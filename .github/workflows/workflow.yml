@@ -1,0 +1,39 @@
+name: Workflow
+
+on: workflow_dispatch
+
+permissions:
+  attestations: write
+  contents: write
+  id-token: write
+
+jobs:
+  job:
+    name: Job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: node script.js
+        env:
+          DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: output.txt
+
+      - name: Add output.txt to repo
+        run: |
+          gh api \
+            -X PUT \
+            /repos/{owner}/{repo}/contents/output.txt \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -f "message=Add output.txt" \
+            -f "content=$(base64 output.txt)"
+        env:
+          GH_TOKEN: ${{ github.token }}
