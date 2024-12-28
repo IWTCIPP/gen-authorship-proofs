@@ -14,7 +14,7 @@ I've started digitally signing files before I upload them to Catbox. The signatu
 
 ## The Solution for (Some) Old Images
 
-This repo contains [a GitHub workflow](/blob/main/.github/workflows/workflow.yml) that [makes some web requests, logs information about their results](/blob/main/script.js), and generates an attestation for [the log file](/blob/main/output.txt). Having run that, I can now provide proof that, for some images, the following is true:
+This repo contains [a GitHub workflow](.github/workflows/workflow.yml) that [makes some web requests, logs information about their results](script.js), and generates an attestation for [the log file](output.txt). Having run that, I can now provide proof that, for some images, the following is true:
 
 1. The image was uploaded to Tantabus at time T (based on `created_at` and `orig_sha512_hash`).
 2. The image was linked to on 4chan at time F (based on a Desuarchive `timestamp` and the presence of a specific Catbox URL in the associated `comment`).
