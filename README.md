@@ -10,7 +10,7 @@ Once an image is on Tantabus, I want to put my `prompter:iwtcipp` tag on it, but
 
 ## The Solution for New Images
 
-I've started digitally signing files before I upload them to Catbox. The signatures will be verifiable with a tool that I haven't made yet (watch this space if you care).
+I've started digitally signing files before I upload them to Catbox. The signatures can be verified with [a tool that I made](https://github.com/IWTCIPP/signature-verify-tool).
 
 ## The Solution for (Some) Old Images
 
@@ -18,7 +18,7 @@ This repo contains [a GitHub workflow](.github/workflows/workflow.yml) that [mak
 
 1. The image was uploaded to Tantabus at time T (based on `created_at` and `orig_sha512_hash`).
 2. The image was linked to on 4chan at time F (based on a Desuarchive `timestamp` and the presence of a specific Catbox URL in the associated `comment`).
-3. The image was uploaded to Catbox at time C (based on the `last-modified` header and hashes of the Catbox version of the file).
+3. The image was uploaded to Catbox at time C (based on the `last-modified` header and hashes of the response body).
 4. The image existed in a Dropbox account at time D (based on a file revision's `server_modified` and `content_hash` values).
 5. T > F > C > D.
 
